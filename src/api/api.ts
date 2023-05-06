@@ -6,7 +6,12 @@ export const getPokemons = async (limit: number, offset: number) => {
 	const response = await axios.get(`${API_BASE_URL}/pokemon`, {
 		params: { limit, offset },
 	});
-	return response.data;
+	return response.data.results;
+};
+
+export const getPokemonsCount = async () => {
+	const response = await axios.get(`${API_BASE_URL}/pokemon`);
+	return response.data.count;
 };
 
 export const getPokemonDetails = async (url: string) => {
@@ -19,10 +24,18 @@ export const getPokemonTypes = async () => {
 	return response.data.results;
 };
 
-export const fetchPokemonByName = async (name: string) => {
+export const getPokemonByName = async (name: string) => {
 	const response = await axios.get(`${API_BASE_URL}/pokemon/${name}`);
 	if (!response.data) {
 		throw new Error(`Failed to fetch pokemon ${name}: ${response.statusText}`);
+	}
+	return response.data;
+};
+
+export const getPokemonSpecies = async (name: string) => {
+	const response = await axios.get(`${API_BASE_URL}/pokemon-species/${name}`);
+	if (!response.data) {
+		throw new Error(`Failed to fetch pokemon species: ${response.statusText}`);
 	}
 	return response.data;
 };

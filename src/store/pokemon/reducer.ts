@@ -1,38 +1,43 @@
-import {
-	PokemonState,
-	PokemonActionTypes,
-	LOAD_POKEMON_REQUEST,
-	LOAD_POKEMON_SUCCESS,
-	LOAD_POKEMON_FAILURE,
-} from './types';
+import { PokemonCardActionTypes, PokemonCardAction, PokemonState } from './types';
 
 const initialState: PokemonState = {
-	data: [],
-	selected: null,
-	isLoading: false,
-	error: null,
+	data: {
+		id: 0,
+		name: '',
+		types: [],
+		image: '',
+		height: 0,
+		weight: 0,
+		stats: [],
+		species: '',
+		abilities: [],
+		genders: [],
+		weaknesses: [],
+	},
+	cardLoading: true,
+	cardError: null,
 };
 
-const pokemonReducer = (state = initialState, action: PokemonActionTypes): PokemonState => {
+const pokemonReducer = (state = initialState, action: PokemonCardAction): PokemonState => {
 	switch (action.type) {
-		case LOAD_POKEMON_REQUEST:
+		case PokemonCardActionTypes.LOAD_POKEMON_REQUEST:
 			return {
 				...state,
-				isLoading: true,
-				error: null,
+				cardLoading: true,
+				cardError: null,
 			};
-		case LOAD_POKEMON_SUCCESS:
+		case PokemonCardActionTypes.LOAD_POKEMON_SUCCESS:
 			return {
 				...state,
-				isLoading: false,
-				error: null,
-				data: [...state.data, action.payload],
+				cardLoading: false,
+				cardError: null,
+				data: { ...state.data, ...action.payload },
 			};
-		case LOAD_POKEMON_FAILURE:
+		case PokemonCardActionTypes.LOAD_POKEMON_FAILURE:
 			return {
 				...state,
-				isLoading: false,
-				error: action.payload,
+				cardLoading: false,
+				cardError: action.payload,
 			};
 		default:
 			return state;

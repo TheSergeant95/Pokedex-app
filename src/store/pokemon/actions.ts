@@ -1,39 +1,15 @@
-// src/store/pokemon/actions.ts
+import { PokemonCardActionTypes, PokemonCardAction, Pokemon } from './types';
 
-import { ThunkAction } from 'redux-thunk';
-import { RootState } from '..';
-import {
-	PokemonActionTypes,
-	LOAD_POKEMON_REQUEST,
-	LOAD_POKEMON_SUCCESS,
-	LOAD_POKEMON_FAILURE,
-	Pokemon,
-} from './types';
-import { fetchPokemonByName } from '../../api';
-
-export const loadPokemonRequest = (): PokemonActionTypes => ({
-	type: LOAD_POKEMON_REQUEST,
+export const loadPokemonRequest = (): PokemonCardAction => ({
+	type: PokemonCardActionTypes.LOAD_POKEMON_REQUEST,
 });
 
-export const loadPokemonSuccess = (pokemon: Pokemon): PokemonActionTypes => ({
-	type: LOAD_POKEMON_SUCCESS,
+export const loadPokemonSuccess = (pokemon: Pokemon): PokemonCardAction => ({
+	type: PokemonCardActionTypes.LOAD_POKEMON_SUCCESS,
 	payload: pokemon,
 });
 
-export const loadPokemonFailure = (error: string): PokemonActionTypes => ({
-	type: LOAD_POKEMON_FAILURE,
+export const loadPokemonFailure = (error: Error): PokemonCardAction => ({
+	type: PokemonCardActionTypes.LOAD_POKEMON_FAILURE,
 	payload: error,
 });
-
-export const loadPokemon =
-	(name: string): ThunkAction<void, RootState, unknown, PokemonActionTypes> =>
-	async (dispatch) => {
-		dispatch(loadPokemonRequest());
-
-		try {
-			const pokemon = await fetchPokemonByName(name);
-			dispatch(loadPokemonSuccess(pokemon));
-		} catch (error) {
-			dispatch(loadPokemonFailure((error as Error).message));
-		}
-	};

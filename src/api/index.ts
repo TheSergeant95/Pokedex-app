@@ -1,1 +1,8 @@
-export { getPokemons, getPokemonDetails, getPokemonTypes, fetchPokemonByName } from './api';
+export {
+	getPokemons,
+	getPokemonsCount,
+	getPokemonDetails,
+	getPokemonTypes,
+	getPokemonByName,
+	getPokemonSpecies,
+} from './api';

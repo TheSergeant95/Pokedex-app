@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '../../../store';
 import { setSelectedTypes } from '../../../store/pokemonList/actions';
 import { PokemonListAction } from '../../../store/pokemonList/types';
+import './Filter.scss';
 
 type FilterProps = {
 	options: string[];
@@ -40,24 +41,19 @@ const Filter: FC<FilterProps> = ({ options, value, onChange }) => {
 	};
 
 	return (
-		<form>
-			<p>Filter by type:</p>
+		<form className="filter">
+			<p className="filter__title">Filter by type:</p>
 			{options.map((option) => (
-				<div key={option}>
+				<div className="filter__option" key={option}>
 					<input type="checkbox" id={option} value={option} onChange={handleSelectChange} />
 					<label htmlFor={option}>{option}</label>
 				</div>
 			))}
 			{/* <button type="submit">Apply</button> */}
-			<button type="reset" onClick={handleClearFilter}>
+			<button className="filter__btn-clear" type="reset" onClick={handleClearFilter}>
 				Clear
 			</button>
 		</form>
-		// <div>
-		// 	<Select options={options} value={value} onChange={handleSelectChange} multiple={true} />
-		// 	<button onClick={handleApplyFilter}>Apply</button>
-		// 	<button onClick={handleClearFilter}>Clear</button>
-		// </div>
 	);
 };
 

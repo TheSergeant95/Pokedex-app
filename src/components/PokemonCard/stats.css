@@ -1,0 +1,17 @@
+.stats ul{
+	padding: 0;
+}
+
+.stats li{
+	display: flex;
+	list-style-type: none;
+	justify-content: space-between;
+}
+
+.stats__pill {
+	margin: 0 2%;
+	width: 45%;
+	text-align: center;
+	height: 1.5em;
+	border-radius: 1em;
+}

@@ -1,0 +1,42 @@
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.spinner__window {
+	width: 100vw;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	z-index:1050;
+	overflow: hidden;
+}
+
+.spinner__container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.spinner__icon {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	box-shadow: 0 0 0.8em rgb(255, 255, 255);
+	animation: spinner 1.5s linear infinite;
+  }
+
+.spinner__title {
+	text-shadow: 0.1em 0.1em 0.8em rgb(255, 255, 255),
+				 0.03em 0.03em 0.03em #000;
+	color: rgb(250, 163, 3);
+	font-family: 'PokemonHollow', sans-serif;
+	font-size: 3rem;
+}

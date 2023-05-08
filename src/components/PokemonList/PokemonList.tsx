@@ -9,6 +9,8 @@ import { fetchPokemons } from '../../store/pokemonList/asyncActions';
 import { ModalWindowAction } from '../../store/modal/types';
 import { SetModalName, SetModalToggle } from '../../store/modal/actions';
 import { PokemonConstsListAction } from '../../store/pokemonConsts/types';
+import './PokemonList.scss';
+import Spinner from '../shared/Spinner';
 
 const PokemonList: React.FC = () => {
 	const dispatch: ThunkDispatch<
@@ -31,16 +33,20 @@ const PokemonList: React.FC = () => {
 
 	useEffect(() => {
 		dispatch(fetchPokemons(pokemons, selectedTypes, searchQuery, itemsPerPage, currentPage));
-		console.log(selectedTypes, filteredPokemons);
 	}, [dispatch, currentPage, itemsPerPage, selectedTypes, searchQuery]);
 
 	const onClickCard = (name: string) => {
 		dispatch(SetModalName(name));
-		dispatch(SetModalToggle(!modalToggle));
+		dispatch(SetModalToggle(true));
+		document.body.style.overflow = 'hidden';
 	};
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return (
+			<div className="pokemon-list">
+				<Spinner mainPage={false} text={''} />
+			</div>
+		);
 	}
 
 	if (error) {
@@ -48,7 +54,7 @@ const PokemonList: React.FC = () => {
 	}
 
 	return (
-		<div className="pokemon-list__grid">
+		<div className="pokemon-list">
 			{filteredPokemons.map((pokemon: Pokemon) => (
 				<PokemonCard key={pokemon.name} pokemon={pokemon} onClickCard={onClickCard} />
 			))}

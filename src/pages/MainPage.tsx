@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { ThunkDispatch } from 'redux-thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { ITEMS_PER_PAGE_OPTIONS } from '../utils/consts';
@@ -19,6 +19,9 @@ import {
 	setSelectedTypes,
 	setSearchQuery,
 } from '../store/pokemonList/actions';
+import './MainPage.scss';
+import { SetModalToggle } from '../store/modal/actions';
+import Spinner from '../components/shared/Spinner';
 
 const MainPage: React.FC = () => {
 	const dispatch: ThunkDispatch<
@@ -56,8 +59,17 @@ const MainPage: React.FC = () => {
 		dispatch(setSearchQuery(query));
 	};
 
+	const handleModal = (isActive: boolean) => {
+		dispatch(SetModalToggle(isActive));
+		if (isActive === true) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+	};
+
 	if (constLoading) {
-		return <div>Loading...</div>;
+		return <Spinner mainPage={true} text={'Loading...'} />;
 	}
 
 	if (constError) {
@@ -65,26 +77,46 @@ const MainPage: React.FC = () => {
 	}
 
 	return (
-		<div>
-			<SearchBar onSearch={handleSearchChange} />
-			<Select
-				options={ITEMS_PER_PAGE_OPTIONS}
-				value={itemsPerPage}
-				onChange={onItemsPerPageChange}
-				multiple={false}
-			/>
-			<Filter options={types} value={selectedTypes} onChange={onFilterTypesChange} />
-			<div className="pokemon-list__header-right">
-				<span>{currentCount} pokemon(s)</span>
+		<div className="main-page">
+			<div className="main-page__header">
+				<div className="main-page__header-left">
+					<SearchBar onSearch={handleSearchChange} />
+				</div>
+				<div className="main-page__header-right dropdown">
+					<ul>
+						<li className="dropdown__items">
+							<input type="checkbox" id={'dropdown'} />
+							<label htmlFor={'dropdown'} data-toggle="dropdown">
+								Advanced Search Options
+							</label>
+							<ul className="dropdown__item">
+								<li>
+									<Filter options={types} value={selectedTypes} onChange={onFilterTypesChange} />
+								</li>
+								<li>
+									<Select
+										options={ITEMS_PER_PAGE_OPTIONS}
+										value={itemsPerPage}
+										onChange={onItemsPerPageChange}
+									/>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<PokemonList />
+			<span>{currentCount} pokémon(s)</span>
+			<div className="main-page__container">
+				<PokemonList />
+			</div>
 			<Pagination
+				className="pagination"
 				currentPage={currentPage}
 				pageSize={itemsPerPage}
 				totalItems={currentCount}
 				onPageChange={onPageChange}
 			/>
-			{name ? <PokemonDetails name={name} /> : null}
+			{name ? <PokemonDetails active={modalToggle} name={name} setActive={handleModal} /> : null}
 		</div>
 	);
 };

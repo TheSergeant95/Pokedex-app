@@ -1,0 +1,27 @@
+.pokemon-detail {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	z-index:1050;
+	top: 0;
+	left: 0;
+	display: none;
+	overflow: hidden;
+	
+}
+
+.pokemon-detail_active {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pokemon-detail__window {
+	padding: 20px;
+	border-radius: 12px;
+	background-color: white;
+	height: 80vh;
+	width: 70vw;
+	max-width: 80vw;
+}

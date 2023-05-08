@@ -35,7 +35,6 @@ export const loadPokemon =
 					.concat(...weaknesses)
 					.filter((value, index, array) => array.indexOf(value) === index),
 			};
-			console.log(getAbilities(response.abilities));
 			dispatch(loadPokemonSuccess(pokemon));
 		} catch (error) {
 			dispatch(loadPokemonFailure(error as Error));

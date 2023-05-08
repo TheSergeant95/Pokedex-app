@@ -1,25 +1,34 @@
 import React, { FC, ChangeEvent } from 'react';
+import './Select.scss';
 
 interface SelectProps<T> {
 	options: T[];
 	value: T;
-	multiple: boolean;
 	onChange: (value: T) => void;
 }
 
-const Select: FC<SelectProps<any>> = ({ options, value, multiple, onChange }) => {
-	const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-		onChange(event.target.value as any);
+const Select: FC<SelectProps<any>> = ({ options, value, onChange }) => {
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+		onChange(+event.target.value as any);
 	};
 
 	return (
-		<select value={value} onChange={handleChange} multiple={multiple}>
+		<div className="select">
 			{options.map((option) => (
-				<option key={option} value={option}>
-					{option}
-				</option>
+				<>
+					<input
+						type="radio"
+						key={option}
+						id={option}
+						name="itemsPerPage"
+						value={option}
+						checked={value === option ? true : false}
+						onChange={handleChange}
+					/>
+					<label htmlFor={option}>{option}</label>
+				</>
 			))}
-		</select>
+		</div>
 	);
 };
 

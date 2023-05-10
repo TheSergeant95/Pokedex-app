@@ -1,6 +1,5 @@
 import { PokemonListState, PokemonListAction, PokemonListActionTypes } from './types';
 
-// Define the initial state of the Pokemon list
 const initialPokemonListState: PokemonListState = {
 	loading: false,
 	error: null,
@@ -12,7 +11,6 @@ const initialPokemonListState: PokemonListState = {
 	itemsPerPage: 10,
 };
 
-// Define the reducer for handling the Pokemon list state
 export const pokemonListReducer = (
 	state: PokemonListState = initialPokemonListState,
 	action: PokemonListAction,

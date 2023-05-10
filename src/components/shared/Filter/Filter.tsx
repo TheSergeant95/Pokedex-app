@@ -16,7 +16,6 @@ type FilterProps = {
 };
 
 const Filter: FC<FilterProps> = ({ options, value, onChange }) => {
-	// const [checked, setChecked] = useState(false);
 	const dispatch: ThunkDispatch<RootState, undefined, PokemonListAction> = useDispatch();
 	const { selectedTypes } = useSelector((state: RootState) => state.pokemonList);
 
@@ -25,17 +24,11 @@ const Filter: FC<FilterProps> = ({ options, value, onChange }) => {
 		if (selectedTypes.includes(value)) {
 			const updatedTypes = selectedTypes.filter((type) => type !== value);
 			onChange(updatedTypes);
-			// setChecked(false);
 		} else {
 			const updatedTypes = [...selectedTypes, value];
 			onChange(updatedTypes);
-			// setChecked(true);
 		}
 	};
-
-	// const handleApplyFilter = () => {
-	// 	onChange(selectedOptions);
-	// };
 
 	const handleClearFilter = () => {
 		setSelectedTypes([]);

@@ -20,7 +20,6 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-// Define the thunk types
 export type ThunkResult<R> = ThunkAction<
 	R,
 	RootState,
@@ -35,6 +34,4 @@ export type AppDispatch = ThunkDispatch<
 >;
 
 const store = configureStore({ reducer: rootReducer, middleware: [thunk] });
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-// export type AppDispatch = typeof store.dispatch;
 export default store;

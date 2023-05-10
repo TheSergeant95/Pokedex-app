@@ -12,7 +12,6 @@ const initialPokemonConstsListState: PokemonConstsListState = {
 	count: 0,
 };
 
-// Define the reducer for handling the Pokemon list state
 export const pokemonConstsListReducer = (
 	state: PokemonConstsListState = initialPokemonConstsListState,
 	action: PokemonConstsListAction,

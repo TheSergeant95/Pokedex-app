@@ -11,7 +11,6 @@ export interface PokemonListState {
 	itemsPerPage: number;
 }
 
-// Define the actions that can be dispatched to the Redux store
 export enum PokemonListActionTypes {
 	POKEMONS_LOADING = 'POKEMONS_LOADING',
 	POKEMONS_LOAD_SUCCESS = 'POKEMONS_LOAD_SUCCESS',

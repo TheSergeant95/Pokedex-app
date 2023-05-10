@@ -22,7 +22,6 @@ export enum PokemonConstsListActionTypes {
 	POKEMON_CONSTS_LOAD_ERROR = 'POKEMON_CONSTS_LOAD_ERROR',
 }
 
-// PokemonConstsListActionTypes
 interface LoadPokemonConstsAction {
 	type: typeof PokemonConstsListActionTypes.POKEMON_CONSTS_LOAD_REQUEST;
 }

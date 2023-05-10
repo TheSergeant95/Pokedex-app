@@ -1,7 +1,8 @@
+$white:rgb(255, 255, 255);
+
 .search-bar {
 	position: relative;
 	transform: translate(-10%);
-	top: 10px;
 	&__box {	
 		input[type="text"] {
 			border: none;
@@ -29,7 +30,7 @@
 				outline: none;
 				color: black;
 				background:none;
-				color: rgb(255, 255, 255);
+				color: $white;
 				+ span {
 					width: 200px;
 					&::before {
@@ -42,8 +43,7 @@
 			+ span {
 				z-index: 0;
 				position: absolute;
-				border: 4px solid rgb(255, 255, 255);
-				top: -5px;
+				border: 4px solid $white;
 				width: 25px;
 				height: 25px;
 				transition: all .25s ease-in .25s;
@@ -54,11 +54,11 @@
 					transform-origin: left top;
 					content: '';
 					position: absolute;
-					width: 10px;
+					width: 15px;
 					height: 5px;
 					border-radius: 5px;
-					background: rgb(255, 255, 255);
-					transform: rotate(45deg) translate(31px, -2px);
+					background: $white;
+					transform: rotate(45deg) translate(23px, -2px);
 				}
 			}
 		}

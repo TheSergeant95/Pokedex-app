@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useState } from 'react';
 import { ThunkDispatch } from 'redux-thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { ITEMS_PER_PAGE_OPTIONS } from '../utils/consts';
@@ -22,6 +22,7 @@ import {
 import './MainPage.scss';
 import { SetModalToggle } from '../store/modal/actions';
 import Spinner from '../components/shared/Spinner';
+import { get } from 'http';
 
 const MainPage: React.FC = () => {
 	const dispatch: ThunkDispatch<
@@ -39,41 +40,57 @@ const MainPage: React.FC = () => {
 
 	useEffect(() => {
 		dispatch(fetchPokemonConsts());
+		console.log(document.body.style.maxWidth);
 	}, [dispatch]);
 
-	const onPageChange = (newPage: number) => {
-		dispatch(setCurrentPage(newPage));
-	};
+	const onPageChange = useCallback(
+		(newPage: number) => {
+			dispatch(setCurrentPage(newPage));
+		},
+		[dispatch],
+	);
 
-	const onItemsPerPageChange = (newItemsPerPage: number) => {
-		dispatch(setItemsPerPage(newItemsPerPage));
-		dispatch(setCurrentPage(1));
-	};
+	const onItemsPerPageChange = useCallback(
+		(newItemsPerPage: number) => {
+			dispatch(setItemsPerPage(newItemsPerPage));
+			dispatch(setCurrentPage(1));
+		},
+		[dispatch],
+	);
 
-	const onFilterTypesChange = (newFilterTypes: string[]) => {
-		dispatch(setSelectedTypes(newFilterTypes));
-		dispatch(setCurrentPage(1));
-	};
+	const onFilterTypesChange = useCallback(
+		(newFilterTypes: string[]) => {
+			dispatch(setSelectedTypes(newFilterTypes));
+			dispatch(setCurrentPage(1));
+		},
+		[dispatch],
+	);
 
-	const handleSearchChange = (query: string) => {
-		dispatch(setSearchQuery(query));
-	};
+	const handleSearchChange = useCallback(
+		(query: string) => {
+			dispatch(setSearchQuery(query));
+		},
+		[dispatch],
+	);
 
-	const handleModal = (isActive: boolean) => {
-		dispatch(SetModalToggle(isActive));
-		if (isActive === true) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = '';
-		}
-	};
+	const handleModal = useCallback(
+		(isActive: boolean) => {
+			dispatch(SetModalToggle(isActive));
+			if (isActive === true) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = '';
+			}
+		},
+		[dispatch],
+	);
 
 	if (constLoading) {
 		return <Spinner mainPage={true} text={'Loading...'} />;
 	}
 
 	if (constError) {
-		return <div>Error</div>;
+		return null;
 	}
 
 	return (
@@ -105,7 +122,7 @@ const MainPage: React.FC = () => {
 					</ul>
 				</div>
 			</div>
-			<span>{currentCount} pokémon(s)</span>
+			<h2 className="main-page__count">Found {currentCount} pokémon(s)</h2>
 			<div className="main-page__container">
 				<PokemonList />
 			</div>

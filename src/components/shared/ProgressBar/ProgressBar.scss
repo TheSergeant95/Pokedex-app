@@ -1,0 +1,18 @@
+$background-color_1: #c2c2c2;
+$background-color_2: #0f81eb;
+
+.progress-bar {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	border-radius: 0.4em;
+	background-color: $background-color_1;
+	border: 1px #000 solid;
+	&__dynamic {
+		position: relative;
+		overflow: hidden;
+		border-radius: inherit;
+		background-color: $background-color_2;
+	}
+}
+

@@ -6,7 +6,9 @@ import { loadPokemon } from '../../../store/pokemon/asyncActions';
 import { PokemonCardAction } from '../../../store/pokemon/types';
 import { getTypeColor } from '../../../utils';
 import noImage from '../../../static/svg_stop-sign.svg';
-import './PokemonDetails.css';
+import './PokemonDetails.scss';
+import '../../shared/stats.scss';
+import ProgressBar from '../../shared/ProgressBar';
 
 interface PokemonDetailsProps {
 	active: boolean;
@@ -15,8 +17,9 @@ interface PokemonDetailsProps {
 }
 
 const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive }) => {
-	const dispatch: ThunkDispatch<RootState, undefined, PokemonCardAction> = useDispatch();
+	const dispatch = useDispatch<ThunkDispatch<RootState, undefined, PokemonCardAction>>();
 	const { data, cardError, cardLoading } = useSelector((state: RootState) => state.pokemon);
+
 	useEffect(() => {
 		dispatch(loadPokemon(name));
 	}, [dispatch, name]);
@@ -48,19 +51,17 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive
 		>
 			<div className="pokemon-detail__window" onClick={(e) => e.stopPropagation()}>
 				<div className="pokemon-detail__header">
-					<div className="pokemon-detail__title">{data.name}</div>
-					<div className="pokemon-detail__types stats">
-						{data.types.map((type, index) => (
-							<div
-								className="stats__pill"
-								key={type}
-								style={{ backgroundColor: getTypeColor(type)[0] }}
-							>
-								<span className="stats__value" style={{ color: getTypeColor(type)[1] }}>
-									{type}
-								</span>
-							</div>
-						))}
+					<div></div>
+					<h3 className="pokemon-detail__title">{data.name}</h3>
+					<div className="close-button" onClick={() => setActive(false)}>
+						<div className="in">
+							<div className="close-button__block"></div>
+							<div className="close-button__block"></div>
+						</div>
+						<div className="out">
+							<div className="close-button__block"></div>
+							<div className="close-button__block"></div>
+						</div>
 					</div>
 				</div>
 				<div className="pokemon-detail__body detail-body">
@@ -68,7 +69,7 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive
 						{data.image ? (
 							<img src={data.image} alt={data.name} />
 						) : (
-							<img src={noImage} alt={'No image'} style={{ width: '96px', height: '96px' }} />
+							<img src={noImage} alt={'No image'} />
 						)}
 					</div>
 					<div className="detail-body__params stats">
@@ -97,8 +98,72 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive
 								<strong className="stats__title">Gender:</strong>
 								<div className="stats__icon">{genderImages}</div>
 							</li>
+						</ul>
+					</div>
+					<div className="detail-body__stats stats">
+						<ul>
 							<li>
-								<strong className="stats__title">Weaknesses:</strong>
+								<strong className="stats__title">HP:</strong>
+								<span className="stats__bar">
+									<ProgressBar value={data.stats[0].base_stat} />
+								</span>
+							</li>
+							<li>
+								<strong className="stats__title">Attack:</strong>
+								<span className="stats__bar">
+									<ProgressBar value={data.stats[1].base_stat} />
+								</span>
+							</li>
+							<li>
+								<strong className="stats__title">Defense:</strong>
+								<span className="stats__bar">
+									<ProgressBar value={data.stats[2].base_stat} />
+								</span>
+							</li>
+							<li>
+								<strong className="stats__title">Special Attack:</strong>
+								<span className="stats__bar">
+									<ProgressBar value={data.stats[3].base_stat} />
+								</span>
+							</li>
+							<li>
+								<strong className="stats__title">Special Defense:</strong>{' '}
+								<span className="stats__bar">
+									<ProgressBar value={data.stats[4].base_stat} />
+								</span>
+							</li>
+							<li>
+								<strong className="stats__title">Speed:</strong>
+								<span className="stats__bar">
+									<ProgressBar value={data.stats[5].base_stat} />
+								</span>
+							</li>
+						</ul>
+					</div>
+					<div className="detail-body__params stats">
+						<li>
+							<strong className="stats__title">Types:</strong>
+							<div className="stats__pills">
+								{data.types.map((type, index) => (
+									<div
+										className="stats__pill"
+										key={type}
+										style={{ backgroundColor: getTypeColor(type)[0] }}
+									>
+										<span
+											key={type}
+											className="stats__value"
+											style={{ color: getTypeColor(type)[1] }}
+										>
+											{type}
+										</span>
+									</div>
+								))}
+							</div>
+						</li>
+						<li>
+							<strong className="stats__title">Weaknesses:</strong>
+							<div className="stats__pills">
 								{data.weaknesses?.map((weakness, index) => (
 									<div
 										className="stats__pill"
@@ -110,36 +175,8 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive
 										</span>
 									</div>
 								))}
-							</li>
-						</ul>
-					</div>
-					<div className="detail-body__stats stats">
-						<ul>
-							<li>
-								<strong className="stats__title">HP:</strong>
-								<span className="stats__bar">{data.stats[0].base_stat}</span>
-							</li>
-							<li>
-								<strong className="stats__title">Attack:</strong>
-								<span className="stats__bar">{data.stats[1].base_stat}</span>
-							</li>
-							<li>
-								<strong className="stats__title">Defense:</strong>
-								<span className="stats__bar">{data.stats[2].base_stat}</span>
-							</li>
-							<li>
-								<strong className="stats__title">Special Attack:</strong>
-								<span className="stats__bar">{data.stats[3].base_stat}</span>
-							</li>
-							<li>
-								<strong className="stats__title">Special Defense:</strong>{' '}
-								<span className="stats__bar">{data.stats[4].base_stat}</span>
-							</li>
-							<li>
-								<strong className="stats__title">Speed:</strong>
-								<span className="stats__bar">{data.stats[5].base_stat}</span>
-							</li>
-						</ul>
+							</div>
+						</li>
 					</div>
 				</div>
 			</div>

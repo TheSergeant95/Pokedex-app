@@ -29,7 +29,6 @@ const PokemonList: React.FC = () => {
 		filteredPokemons,
 	} = useSelector((state: RootState) => state.pokemonList);
 	const { pokemons } = useSelector((state: RootState) => state.pokemonConsts);
-	const { name, modalToggle } = useSelector((state: RootState) => state.modalWindow);
 
 	useEffect(() => {
 		dispatch(fetchPokemons(pokemons, selectedTypes, searchQuery, itemsPerPage, currentPage));

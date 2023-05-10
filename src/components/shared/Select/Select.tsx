@@ -15,8 +15,9 @@ const Select: FC<SelectProps<any>> = ({ options, value, onChange }) => {
 	return (
 		<div className="select">
 			{options.map((option) => (
-				<>
+				<label key={option}>
 					<input
+						className="select__option radio"
 						type="radio"
 						key={option}
 						id={option}
@@ -25,8 +26,8 @@ const Select: FC<SelectProps<any>> = ({ options, value, onChange }) => {
 						checked={value === option ? true : false}
 						onChange={handleChange}
 					/>
-					<label htmlFor={option}>{option}</label>
-				</>
+					{option}
+				</label>
 			))}
 		</div>
 	);

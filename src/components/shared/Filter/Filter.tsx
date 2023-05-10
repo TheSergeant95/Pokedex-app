@@ -6,6 +6,8 @@ import { RootState } from '../../../store';
 import { setSelectedTypes } from '../../../store/pokemonList/actions';
 import { PokemonListAction } from '../../../store/pokemonList/types';
 import './Filter.scss';
+import { getTypeColor } from '../../../utils';
+import '../../shared/stats.scss';
 
 type FilterProps = {
 	options: string[];
@@ -44,9 +46,21 @@ const Filter: FC<FilterProps> = ({ options, value, onChange }) => {
 		<form className="filter">
 			<p className="filter__title">Filter by type:</p>
 			{options.map((option) => (
-				<div className="filter__option" key={option}>
-					<input type="checkbox" id={option} value={option} onChange={handleSelectChange} />
-					<label htmlFor={option}>{option}</label>
+				<div key={option}>
+					<input
+						className="filter__option checkbox"
+						type="checkbox"
+						id={option}
+						value={option}
+						onChange={handleSelectChange}
+					/>
+					<label
+						className="filter__label stats__pill"
+						htmlFor={option}
+						style={{ color: getTypeColor(option)[1], backgroundColor: getTypeColor(option)[0] }}
+					>
+						{option}
+					</label>
 				</div>
 			))}
 			{/* <button type="submit">Apply</button> */}

@@ -1,83 +1,123 @@
-.pagination__container {
-	display: flex;
-	list-style-type: none;
-  
-	.pagination__item {
-	  padding: 0 12px;
-	  height: 32px;
-	  text-align: center;
-	  margin: auto 4px;
-	  color: rgba(0, 0, 0, 0.87);
-	  display: flex;
-	  box-sizing: border-box;
-	  align-items: center;
-	  letter-spacing: 0.01071em;
-	  border-radius: 1.01rem;
-	  line-height: 1.43;
-	  font-size: 1rem;
-	  min-width: 2rem;
-  
-	  &-dots:hover {
-		background-color: transparent;
-		cursor: default;
-	  }
-	  &:hover {
-		background-color: rgba(0, 0, 0, 0.04);
-		cursor: pointer;
-	  }
-  
-	  &_selected {
-		background-color: rgba(0, 0, 0, 0.18);
-	  }
-  
-	  &-arrow {
-		&::before {
-		  position: relative;
-		  display: inline-block;
-		  width: 0.4em;
-		  height: 0.4em;
-		  border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-		  border-top: 0.12em solid rgba(0, 0, 0, 0.87);
-		}
-  
-		&-left {
+.pagination{
+	&__container {
+		display: flex;
+		list-style-type: none;
+		justify-content: center;
+		padding: 0;
+	  
+		.pagination__item {
+		  padding: 0 12px;
+		  height: 32px;
+		  text-align: center;
+		  margin: auto 4px;
+		  color: rgba(0, 0, 0, 0.87);
+		  background: radial-gradient(farthest-corner at 15px 10px, rgb(70, 107, 219) 63%, rgba(0, 0, 0, 0.75) 100%);
+		  box-shadow: 0.05em 0.4em 0.4em rgba(0, 0, 0, 0.22);
+		  display: flex;
+		  box-sizing: border-box;
+		  align-items: center;
+		  letter-spacing: 0.01071em;
+		  border-radius: 1.01rem;
+		  line-height: 1.43;
+		  font-size: 1rem;
+		  min-width: 2rem;
+	  
+		  &-dots:hover {
+			background-color: transparent;
+			cursor: default;
+		  }
+		  &:hover {
+			background: radial-gradient(farthest-corner at 15px 10px, rgb(33, 63, 152) 63%, rgba(0, 0, 0, 0.75) 100%);
+			color: #fff;
+			cursor: pointer;
+		  }
+	  
+		  &_selected {
+			background: radial-gradient(farthest-corner at 15px 10px, rgb(229, 160, 11) 63%, rgba(0, 0, 0, 0.7) 100%);
+			color: #fff;
+		  }
+	  
+		  &-arrow {
+			&::before {
+			  position: relative;
+			  display: inline-block;
+			  width: 0.4em;
+			  height: 0.4em;
+			  border-right: 0.12em solid rgba(0, 0, 0, 0.87);
+			  border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+			}
+	  
+			&-left {
+			  &_disabled {
+				pointer-events: none;
+				&::before {
+					border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+					border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+				  }
+			
+				  &:hover {
+					background-color: transparent;
+					cursor: default;
+				  }
+				}
+			}
+	  
+			&-right {
+			  &_disabled {
+				pointer-events: none;
+				&::before {
+					border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+					border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+				  }
+			
+				  &:hover {
+					background-color: transparent;
+					cursor: default;
+				  }
+				}
+			}
+		  }
+	  
 		  &_disabled {
 			pointer-events: none;
-			&::before {
-				border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-				border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-			  }
-		
-			  &:hover {
-				background-color: transparent;
-				cursor: default;
-			  }
+	  
+			&:hover {
+			  background-color: transparent;
+			  cursor: default;
 			}
-		}
-  
-		&-right {
-		  &_disabled {
-			pointer-events: none;
-			&::before {
-				border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-				border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-			  }
-		
-			  &:hover {
-				background-color: transparent;
-				cursor: default;
-			  }
-			}
+		  }
 		}
 	  }
+	&__manual {
+	  width: 180px;
+	  margin: 0 auto;
+	}
+}
+.manual {
+	&__input{
+		border: 1px solid #000;
+		width: 40px;
+	}
+	&__btn{
+		padding: 0 12px;
+		height: 32px;
+		text-align: center;
+		margin: 0 4px 20px;
+		color: rgba(0, 0, 0, 0.87);
+		background: radial-gradient(farthest-corner at 15px 10px, rgb(70, 107, 219) 63%, rgba(0, 0, 0, 0.75) 100%);
+		box-shadow: 0.05em 0.4em 0.4em rgba(0, 0, 0, 0.22);
+		box-sizing: border-box;
+		align-items: center;
+		letter-spacing: 0.01071em;
+		border-radius: 1.01rem;
+		line-height: 1.43;
+	}
+}
+
   
-	  &_disabled {
-		pointer-events: none;
-  
-		&:hover {
-		  background-color: transparent;
-		  cursor: default;
-		}
-	  }
+
+@media (max-width: 405px) {
+	.pagination__container {
+		height: 24px;
 	}
   }

@@ -5,4 +5,5 @@ export {
 	getPokemonTypes,
 	getPokemonByName,
 	getPokemonSpecies,
+	getPokemonSpeciesById,
 } from './api';

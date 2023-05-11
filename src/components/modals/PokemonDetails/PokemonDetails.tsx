@@ -49,7 +49,10 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive
 			className={`pokemon-detail${active ? ' pokemon-detail_active' : ''}`}
 			onClick={() => setActive(false)}
 		>
-			<div className="pokemon-detail__window" onClick={(e) => e.stopPropagation()}>
+			<div
+				className={`pokemon-detail__window${active ? ' pokemon-detail__window_active' : ''}`}
+				onClick={(e) => e.stopPropagation()}
+			>
 				<div className="pokemon-detail__header">
 					<div></div>
 					<h3 className="pokemon-detail__title">{data.name}</h3>

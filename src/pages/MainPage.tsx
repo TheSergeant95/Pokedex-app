@@ -40,7 +40,6 @@ const MainPage: React.FC = () => {
 
 	useEffect(() => {
 		dispatch(fetchPokemonConsts());
-		console.log(document.body.style.maxWidth);
 	}, [dispatch]);
 
 	const onPageChange = useCallback(

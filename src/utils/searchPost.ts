@@ -7,7 +7,7 @@ const searchPost = (pokemons: PokemonCriteria[], term: string) => {
 	}
 
 	return defaultPokemons.filter((item) => {
-		return item.name.indexOf(term) > -1;
+		return item.name.replaceAll('-', ' ').indexOf(term) > -1;
 	});
 };
 

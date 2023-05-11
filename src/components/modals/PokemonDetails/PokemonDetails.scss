@@ -45,7 +45,7 @@ $close-width: ($button-size / 10);
 		width: 70vw;
 		max-width: 85vw;
 		overflow: auto;
-		transition: transform 2s ease-out, opacity 200ms linear 200ms;
+		transition: transform 500ms ease-out, opacity 200ms linear 200ms;
 		&_active{
 			transform: scale(1);
 			opacity: 1;

@@ -1,4 +1,9 @@
-import { getPokemonByName, getPokemonSpecies, getPokemonDetails } from '../../api';
+import {
+	getPokemonByName,
+	getPokemonSpecies,
+	getPokemonDetails,
+	getPokemonSpeciesById,
+} from '../../api';
 import { titleCase, getSpecies, getGenders, getAbilities } from '../../utils';
 import { loadPokemonRequest, loadPokemonSuccess, loadPokemonFailure } from './actions';
 import { ThunkPokemonCardResult, CardDispatch } from './types';
@@ -10,7 +15,7 @@ export const loadPokemon =
 
 		try {
 			const response = await getPokemonByName(name);
-			const species = await getPokemonSpecies(name);
+			const species = await getPokemonSpeciesById(response.id);
 			const weaknesses: string[] = await Promise.all(
 				response.types.map(async (type: { type: { url: string } }) => {
 					const typeResponse = await getPokemonDetails(type.type.url);

@@ -39,3 +39,11 @@ export const getPokemonSpecies = async (name: string) => {
 	}
 	return response.data;
 };
+
+export const getPokemonSpeciesById = async (id: number) => {
+	const response = await axios.get(`${API_BASE_URL}/pokemon-species/${id}`);
+	if (!response.data) {
+		throw new Error(`Failed to fetch pokemon species: ${response.statusText}`);
+	}
+	return response.data;
+};

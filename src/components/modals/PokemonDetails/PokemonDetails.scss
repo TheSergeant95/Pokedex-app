@@ -12,7 +12,6 @@ $close-width: ($button-size / 10);
 	top: 0;
 	left: 0;
 	display: none;
-	overflow: auto;
 
 	&__header{
 		display: flex;
@@ -203,6 +202,13 @@ $close-width: ($button-size / 10);
 	.detail-body__params {
 		width: 100%;
 		max-width: 475px;
+	}
+}
+
+@media (max-height: 660px){
+	.pokemon-detail__window {
+		height: 100%;
+		width: 100%;
 	}
 }
 

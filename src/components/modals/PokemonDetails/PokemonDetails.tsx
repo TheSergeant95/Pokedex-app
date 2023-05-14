@@ -9,6 +9,7 @@ import noImage from '../../../static/svg_stop-sign.svg';
 import './PokemonDetails.scss';
 import '../../shared/stats.scss';
 import ProgressBar from '../../shared/ProgressBar';
+import Spinner from '../../shared/Spinner';
 
 interface PokemonDetailsProps {
 	active: boolean;
@@ -25,7 +26,16 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ active, name, setActive
 	}, [dispatch, name]);
 
 	if (cardLoading) {
-		return <div>Loading...</div>;
+		return (
+			<div className={`pokemon-detail pokemon-detail_active`}>
+				<div
+					className={`pokemon-detail__window${active ? ' pokemon-detail__window_active' : ''}`}
+					onClick={(e) => e.stopPropagation()}
+				>
+					<Spinner mainPage={false} text={''} />
+				</div>
+			</div>
+		);
 	}
 	if (cardError) {
 		return <div>Error: {cardError.message}</div>;

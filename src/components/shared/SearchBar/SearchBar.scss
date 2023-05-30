@@ -63,4 +63,22 @@ $white:rgb(255, 255, 255);
 			}
 		}
 	}
+	&__btn-clear {
+		margin: 0 1em;
+		padding: 0.4em 0.8em;
+		font-size: 0.8rem;
+		border-radius: 0.4em;
+		background-color: #e1ebea;
+		color: #000000;
+		
+	}
+	&__btn-clear:hover{
+		cursor: pointer;
+		background-color: #b7bfbe;
+		
+	}
+	&__btn-clear:active{
+		background-color: #5d6161;
+		color: #ffffff
+	}
 }

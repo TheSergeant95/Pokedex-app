@@ -28,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 				<input type="text" value={searchTerm} onChange={handleInputChange} />
 				<span></span>
 				<button className="search-bar__btn-clear" type="reset" onClick={handleClearSearch}>
-					x Clear
+					Clear
 				</button>
 			</div>
 		</form>

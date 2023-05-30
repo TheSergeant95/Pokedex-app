@@ -17,13 +17,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 		onSearch(searchTerm.toLowerCase().trim());
 	};
 
+	const handleClearSearch = () => {
+		setSearchTerm('');
+		onSearch('');
+	};
+
 	return (
 		<form className="search-bar" onSubmit={handleFormSubmit}>
 			<div className="search-bar__box">
 				<input type="text" value={searchTerm} onChange={handleInputChange} />
 				<span></span>
+				<button className="search-bar__btn-clear" type="reset" onClick={handleClearSearch}>
+					x Clear
+				</button>
 			</div>
-			{/* <button type="submit">Search</button> */}
 		</form>
 	);
 };

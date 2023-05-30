@@ -56,7 +56,6 @@ const Filter: FC<FilterProps> = ({ options, value, onChange }) => {
 					</label>
 				</div>
 			))}
-			{/* <button type="submit">Apply</button> */}
 			<button className="filter__btn-clear" type="reset" onClick={handleClearFilter}>
 				Clear
 			</button>

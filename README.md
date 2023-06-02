@@ -1,4 +1,5 @@
 # Pokedex-app
+Deployed version of the app (само приложение на хостинге): https://pokedesk-app-task.onrender.com/
 
 # Getting Started with Create React App
 

@@ -36,7 +36,7 @@ export const pokemonConstsListReducer = (
 		case PokemonConstsListActionTypes.POKEMON_LIST_LOAD_SUCCESS:
 			return {
 				...state,
-				pokemons: action.payload,
+				pokemons: [...state.pokemons, ...action.payload],
 			};
 		case PokemonConstsListActionTypes.POKEMON_CONSTS_LOAD_ERROR:
 			return {

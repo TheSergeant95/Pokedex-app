@@ -38,10 +38,6 @@ const MainPage: React.FC = () => {
 	);
 	const { name, modalToggle } = useSelector((state: RootState) => state.modalWindow);
 
-	useEffect(() => {
-		dispatch(fetchPokemonConsts());
-	}, [dispatch]);
-
 	const onPageChange = useCallback(
 		(newPage: number) => {
 			dispatch(setCurrentPage(newPage));
@@ -83,6 +79,10 @@ const MainPage: React.FC = () => {
 		},
 		[dispatch],
 	);
+
+	useEffect(() => {
+		dispatch(fetchPokemonConsts());
+	}, [dispatch]);
 
 	if (constLoading) {
 		return <Spinner mainPage={true} text={'Loading...'} />;

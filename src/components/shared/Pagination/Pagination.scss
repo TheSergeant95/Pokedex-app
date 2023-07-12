@@ -10,7 +10,7 @@
 		  height: 32px;
 		  text-align: center;
 		  margin: auto 4px;
-		  color: rgba(0, 0, 0, 0.87);
+		  color: rgba(255, 255, 255, 0.87);
 		  background: radial-gradient(farthest-corner at 15px 10px, rgb(70, 107, 219) 63%, rgba(0, 0, 0, 0.75) 100%);
 		  box-shadow: 0.05em 0.4em 0.4em rgba(0, 0, 0, 0.22);
 		  display: flex;
@@ -34,7 +34,7 @@
 	  
 		  &_selected {
 			background: radial-gradient(farthest-corner at 15px 10px, rgb(229, 160, 11) 63%, rgba(0, 0, 0, 0.7) 100%);
-			color: #fff;
+			color: #000;
 		  }
 	  
 		  &-arrow {

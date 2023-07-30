@@ -1,7 +1,7 @@
 import React from 'react';
 import './Spinner.scss';
 import './SpinnerList.scss';
-import icon from '../../../static/png_pokeball-icon.png';
+import icon from '../../../static/png_pokeball-icon-min.png';
 
 interface ISpinner {
 	text: string;

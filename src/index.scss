@@ -1,6 +1,7 @@
 @font-face { 
 	font-family: 'PokemonHollow'; 
-	src: url('./static/font_PocketMonk-15ze.ttf') format("truetype"); 
+	src: url('./static/font_PocketMonk-15ze.ttf') format("truetype");
+  font-display: swap; 
 }
 
 html {

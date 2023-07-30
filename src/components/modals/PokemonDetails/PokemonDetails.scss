@@ -11,6 +11,7 @@ $close-width: ($button-size / 10);
 	z-index: 1050;
 	top: 0;
 	left: 0;
+	font-family: "Comic Sans MS", cursive;
 	// display: none;
 	opacity: 0;
 	transform: scale(0);
@@ -41,18 +42,19 @@ $close-width: ($button-size / 10);
 		padding: 2em;
 		border-radius: 12px;
 		background-color: $background-color_2;
-		height: 80vh;
+		height: 85vh;
 		width: 70vw;
 		max-width: 85vw;
 		overflow: auto;
-		transition: transform 500ms ease-out, opacity 200ms linear 200ms;
+		transform-origin: center;
 		&_active{
-			transform: scale(1);
-			opacity: 1;
+			animation-name: zoom-in;
+			animation-duration: 0.3s;
+			animation-fill-mode: forwards;
 		}
 	}
 	&__title {
-		font-size: 2rem;
+		font-size: 3rem;
 		margin-top: 0;
 		flex-basis: 90%;
 		text-align: center;
@@ -82,12 +84,26 @@ $close-width: ($button-size / 10);
 		margin: 0 1em;
 		flex: 1 0 40%;
 		max-width: 420px;
+		li {
+			transition: transform 0.3s ease-in-out;
+
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
 	}
 	&__stats {
 		margin: 0 1em;
 		width: 18em;
 		flex: 1 0 35%;
 		position: relative;
+		li {
+			transition: transform 0.3s ease-in-out;
+
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
 	}
 }
 
@@ -97,7 +113,7 @@ $close-width: ($button-size / 10);
 	height: $button-size;
 	position: relative;
 	flex-basis: 5%;
-	
+	transition: background-color 0.3s ease-in-out;
 	overflow: hidden;
 	> div {
 	  position: relative;
@@ -306,5 +322,16 @@ $close-width: ($button-size / 10);
 	.close-button {
 		flex-basis: 100%;
 		order: 1;
+	}
+}
+
+@keyframes zoom-in {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
 	}
 }

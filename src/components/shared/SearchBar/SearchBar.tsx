@@ -25,7 +25,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 	return (
 		<form className="search-bar" onSubmit={handleFormSubmit}>
 			<div className="search-bar__box">
-				<input type="text" value={searchTerm} onChange={handleInputChange} />
+				<input type="text" aria-label="Search" value={searchTerm} onChange={handleInputChange} />
 				<span></span>
 				<button className="search-bar__btn-clear" type="reset" onClick={handleClearSearch}>
 					Clear

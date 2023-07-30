@@ -97,6 +97,7 @@ const Pagination: React.FC<PaginationProps> = ({
 				<input
 					className="manual__input"
 					type="text"
+					aria-label="PageInput"
 					pattern="[0-9]*"
 					value={enteredPage}
 					onInput={handleInputChange}
